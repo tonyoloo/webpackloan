@@ -15628,7 +15628,13 @@ images.keys().forEach((key) => {
   const imageName = key.replace('./', ''); // Remove the './' from the key
   imagesObj[imageName] = images(key);
 });
-
+function checkFields() {
+    const email = jquery__WEBPACK_IMPORTED_MODULE_6___default()('#email').val().trim();
+    const password = jquery__WEBPACK_IMPORTED_MODULE_6___default()('#password').val().trim();
+    
+    // Return true if both email and password are not empty, false otherwise
+    return email !== '' && password !== '';
+}
 // Example of how to use the imported images
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.image-container');
@@ -15653,14 +15659,31 @@ jquery__WEBPACK_IMPORTED_MODULE_6___default()(document).ready(function() {
 
   jquery__WEBPACK_IMPORTED_MODULE_6___default()("#loginform").on('submit', function(e) {
     e.preventDefault();
+
+
+    
     jquery__WEBPACK_IMPORTED_MODULE_6___default().ajax({
       data: jquery__WEBPACK_IMPORTED_MODULE_6___default()('#loginform').serialize(),
       url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=getIPRSDatabyID&idno=28613556&serial_number=&fname=tony",
       type: "POST",
       dataType: 'json',
       success: function(data) {
-        window.location.href = 'userin.html'; // Navigate to userin.html
-        console.log("Succeeded to login", data);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({
+            title: 'Login Success!',
+            text: 'Welcome to Moringa LOAN app',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Clear cache and reload
+                window.location.href = 'userin.html';
+            }
+        });
+        
+        
+        //API LOGIN
+                                //return
+        
       },
       error: function(data) {
         console.log("Error during login", data);
@@ -15682,6 +15705,56 @@ jquery__WEBPACK_IMPORTED_MODULE_6___default()(document).ready(function() {
       },
     });
   });
+
+  jquery__WEBPACK_IMPORTED_MODULE_6___default()("#registerform").on('submit', function(e) {
+    e.preventDefault();
+
+
+    
+    jquery__WEBPACK_IMPORTED_MODULE_6___default().ajax({
+      data: jquery__WEBPACK_IMPORTED_MODULE_6___default()('#registerform').serialize(),
+      url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=getIPRSDatabyID&idno=28613556&serial_number=&fname=tony",
+      type: "POST",
+      dataType: 'json',
+      success: function(data) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({
+            title: 'Register Success!',
+            text: 'Welcome to Moringa LOAN app',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Clear cache and reload
+                window.location.href = 'index.html';
+            }
+        });
+        
+        
+        //API LOGIN
+                                //return
+        
+      },
+      error: function(data) {
+        console.log("Error during registration", data);
+        if (data.responseJSON?.message) {
+          let errorText = data.responseJSON.message;
+          if (data.responseJSON.errors?.email?.[0]) {
+            errorText += " :" + data.responseJSON.errors.email[0];
+          }
+          sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({
+            title: 'Register Error!',
+            text: errorText,
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+      },
+      complete: function(data) {
+        console.log("Complete register attempt", data);
+      },
+    });
+  });
+
 });
 
 console.log(imagesObj); // Debugging purpose to see the imported images

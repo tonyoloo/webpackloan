@@ -11000,28 +11000,30 @@ document.addEventListener('DOMContentLoaded', () => {
       container.appendChild(imgElement);
     });
   }
-});
 
-jquery__WEBPACK_IMPORTED_MODULE_5___default()(document).ready(function() {
+  const loanApplicationLink = document.getElementById('loan-application-link');
+  console.log('Loan application link:', loanApplicationLink);
 
+  if (loanApplicationLink) {
+    console.log('Loan application link found, adding click event listener');
 
-  // Get the loan application link
-  const loanApplicationLink = jquery__WEBPACK_IMPORTED_MODULE_5___default()('#loan-application-link');
-
-  // Check if the loan application link exists
-  if (loanApplicationLink.length > 0) {
-    console.log('Loan jjjapplication link found, adding click event listener');
-
-    // Add click event listener to the loan application link
-    loanApplicationLink.click(function(e) {
+    loanApplicationLink.addEventListener('click', (e) => {
       console.log('Loan application link clicked');
       e.preventDefault(); // Prevent the default link behavior
-      console.log('Default action prevented, navigating to userin.html');
-      window.location.href = 'index.html'; // Navigate to userin.html
+      console.log('Default action prevented, navigating to google.com');
+      window.location.href = 'index.html'; // Navigate to google.com
     });
   } else {
     console.log('Loan application link not found');
   }
+});
+
+jquery__WEBPACK_IMPORTED_MODULE_5___default()(document).ready(function() {
+  jquery__WEBPACK_IMPORTED_MODULE_5___default()('#signupLink').click(function(e) {
+    e.preventDefault();
+    jquery__WEBPACK_IMPORTED_MODULE_5___default()('#loginform').addClass('hidden');
+    jquery__WEBPACK_IMPORTED_MODULE_5___default()('#registerform').removeClass('hidden');
+  });
 });
 
 })();
