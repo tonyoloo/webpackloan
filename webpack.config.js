@@ -74,7 +74,7 @@ module.exports = (env, argv) => {
         template: './app/index.html',
         filename: 'index.html',
         chunksSortMode: 'manual', // Add this line
-        chunks: ['userin', 'index'], // Ensure 'userin' is loaded before 'index'
+        chunks: ['index', 'userin'], // Ensure 'userin' is loaded before 'index'
           }),
       new MiniCssExtractPlugin({
         filename: '[name].styles.css', // Output CSS file name with unique chunk names
