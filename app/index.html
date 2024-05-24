@@ -2,41 +2,41 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Webpack App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <script defer src="index_bundle.js"></script> -->
-  <!-- <link rel="stylesheet" href="styles.css"> -->
+    <title>MORINGA LOAN</title>
+   
+  
 
 </head>
 <body>
+    <script defer src="userin.bundle.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+   
   <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
       <div class="user_card">
         <div class="d-flex justify-content-center">
           <div class="brand_logo_container">
-            <img src="assets/payroll.png" class="brand_logo" alt="Logo">
-            <img src="assets/payroll.PNG" alt="Example Image">
+            <img src="assets/logo.png" class="brand_logo" alt="Logo">
+            <!-- <img src="assets/logo.png" alt="Example Image"> -->
 
           </div>
         </div>
-        <div class="d-flex justify-content-center form_container">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+       <div class="form_container">
         <form id="loginform" name="loginform">
-       
+      
           <div class="input-group mb-3">
             <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text">.<i class="fas fa-user"></i></span>
             </div>
-            <input type="email" name="email" class="form-control input_user" value="" placeholder="Email">
-          </div>
+            <input type="email" id="email" name="email" class="form-control input_user" value=""
+                placeholder="Email">
+        </div>
           <div class="input-group mb-2">
             <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
+              <span class="input-group-text">.<i class="fas fa-key"></i></span>
             </div>
-            <input type="password" name="password" class="form-control input_pass" value="" placeholder="Password">
+            <input type="password" name="password" name="password" class="form-control input_pass" value="" placeholder="Password">
           </div>
           <div class="form-group">
             <div class="custom-control custom-checkbox">
@@ -48,16 +48,52 @@
             <button type="submit" id="loginsubmit" name="login" value="Login" class="btn login_btn">Login</button>
           </div>
         </form>
+      <!-- register -->
+      <form id="registerform" name="registerform" class="hidden">
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">.<i class="fas fa-user"></i></span>
+          </div>
+          <input type="text" name="username" class="form-control input_user" placeholder="Username">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">.<i class="fas fa-envelope"></i></span>
+          </div>
+          <input type="email" name="email" class="form-control input_user" placeholder="Email">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">.<i class="fas fa-key"></i></span>
+          </div>
+          <input type="text" name="phone" class="form-control input_pass" placeholder="phone">
+        </div>
+        <div class="d-flex justify-content-center mt-3 login_container">
+          <button type="submit" id="registersubmit" name="register" class="btn login_btn">Register</button>
+
+        </div>
+
+
+
+      </form>
+      <!-- end register -->
+      
+      
+      
+      
+      </div>
       </div>
     </div>
   </div>
   <div class="mt-4">
-    <div class="d-flex justify-content-center links fontcolor">
-      Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+    <div id="signupLin" class="d-flex justify-content-center links fontcolor">
+      Don't have an account? <a href="#" id="signupLink" class="ml-2">Sign Up</a>
     </div>
+    
     <div class="d-flex justify-content-center links fontcolor">
       <a href="#">Forgot your password?</a>
     </div>
   </div>
+  
 </body>
 </html>
