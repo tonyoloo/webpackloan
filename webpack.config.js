@@ -20,8 +20,8 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name].bundle.js',
-      publicPath: '/',
+      filename: 'js/[name].bundle.js',
+      //publicPath: '/',
     },
     module: {
       rules: [
@@ -77,7 +77,7 @@ module.exports = (env, argv) => {
         chunks: ['index', 'userin'], // Ensure 'userin' is loaded before 'index'
           }),
       new MiniCssExtractPlugin({
-        filename: '[name].styles.css', // Output CSS file name with unique chunk names
+        filename: 'css/[name].styles.css', // Output CSS file name with unique chunk names
       }),
     ],
     stats: {
