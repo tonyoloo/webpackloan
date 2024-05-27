@@ -86,7 +86,7 @@
                     </li>
 
                     <li>
-                            <a href="">
+                            <a href=""    id="logoutLink">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
                                     <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
@@ -164,6 +164,13 @@
 
 </div> -->
             <div class="content">
+
+
+     
+
+
+
+
                 <div class="row">
 
 
@@ -296,9 +303,62 @@
                     </div>
                 </div>
 
+
+
+                           <!-- view users -->
+                           <div class="card card-user">
+                            <div class="card-header">
+                                <h5 class="card-title">VIEW USERS</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped  ref" id="datatableviewusers">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>USERNAME</th>
+                                            <th>PHONE</th>
+                                            <th>EMAIL</th>
+                                            <th>DATE CREATED</th>
+                                            <th>ACTION</th>
+        
+                                        </tr>
+                                    </thead>
+        
+                                </table>
+        
+                            </div>
+        
+                        </div>
+                        <!-- end view users -->
+        
+             <!-- view users -->
+             <div class="card card-user">
+                <div class="card-header">
+                    <h5 class="card-title">APPROVE LOANS</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped  ref" id="datatableapproveloans">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>USERNAME</th>
+                                <th>PHONE</th>
+                                <th>EMAIL</th>
+                                <th>DATE CREATED</th>
+                                <th>ACTION</th>
+        
+                            </tr>
+                        </thead>
+        
+                    </table>
+        
+                </div>
+        
+            </div>
+            <!-- end view users -->
                 <div class="card card-user">
                     <div class="card-header">
-                        <h5 class="card-title">ADD USER</h5>
+                        <h5 class="card-title">APPLY LOAN</h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-danger" id="error-div"></div>
@@ -308,49 +368,26 @@
 
 
 
-                        <form id="personform" name="personform">
+                        <form id="loanform" name="loanform">
                            
                             <div class="row">
                                 <div class="col-md-5 pr-1 col-lg-4">
                                     <div class="form-group">
-                                        <label>First Name( *mandatory)</label>
-                                        <input type="text" class="form-control" name="f_name" placeholder="Firstname"
-                                            value="">
+                                        <label>Loan type ( *mandatory)</label>
+                                        <select class="form-control" name="loan_type" id="loan_type_dropdown">
+                                            <!-- Options will be dynamically added here -->
+                                        </select>
                                     </div>
+                                    
                                 </div>
-                                <div class="col-md-3 px-1">
-                                    <div class="form-group">
-                                        <label>Middle Name</label>
-                                        <input type="text" class="form-control" name="m_name" placeholder="Midname"
-                                            value="">
-                                    </div></div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label>Last Name</label>
-                                            <input type="text" class="form-control" name="l_name"
-                                                placeholder="Last Name" value="">
-                                        </div>
-                                    </div>
+                               
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5 pr-1 col-lg-4">
-                                        <div class="form-group">
-                                            <label>ID number</label>
-                                            <input type="number" class="form-control" name="id_number"
-                                                placeholder="id number" value="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 px-1">
-                                        <div class="form-group">
-                                            <label>Phone number</label>
-                                            <input type="string" class="form-control" maxlength="10" name="p_number"
-                                                placeholder="07********" value="">
-                                        </div>
-                                    </div>
+                                  
                                     <div class="col-md-4 pl-1">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">Email</label>
-                                            <input type="email" name="e_mail" class="form-control" placeholder="Email"
+                                            <label for="exampleInputEmail2">Amount</label>
+                                            <input type="number" name="amount" id ="amount" class="form-control" placeholder="amount"
                                                 value="">
                                         </div>
                                     </div>
@@ -377,9 +414,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="update ml-auto mr-auto">
-                                        <button type="button" id="personformsubmit"
-                                            class="btn btn-success btn-round">Save
-                                            Profile</button>
+                                        <button type="button" id="loanapplicationform"
+                                            class="btn btn-success btn-round">apply
+                                            loan</button>
 
 
                                     </div>

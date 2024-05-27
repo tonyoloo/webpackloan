@@ -10977,6 +10977,53 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//import 'datatables.net-bs5';
+// import 'datatables.net-autofill-bs5';
+// import 'datatables.net-buttons-bs5';
+// import 'datatables.net-colreorder-bs5';
+// import 'datatables.net-fixedcolumns-bs5';
+// import 'datatables.net-fixedheader-bs5';
+// import 'datatables.net-keytable-bs5';
+// import 'datatables.net-rowgroup-bs5';
+// import 'datatables.net-rowreorder-bs5';
+// import 'datatables.net-responsive-bs5';
+// import 'datatables.net-scroller-bs5';
+// import 'datatables.net-searchbuilder-bs5';
+// import 'datatables.net-searchpanes-bs5';
+// import 'datatables.net-select-bs5';
+// import 'datatables.net-staterestore-bs5';
+// import 'datatables.net-bs5/css/dataTables.bootstrap5.css';
+
+
+
+jquery__WEBPACK_IMPORTED_MODULE_5___default()(document).ready(function() {
+  jquery__WEBPACK_IMPORTED_MODULE_5___default()('#datatableviewusers').DataTable({
+      "ajax": {
+          "url": "https://mail.helb.co.ke:1930/mobiapi.php?rquest=moringa&action=moringa_getusers", // Replace with the actual path to your PHP script
+          "type": "GET",
+          "dataSrc": function (json) {
+              if (json.result === 'success') {
+                  return json.data;
+              } else {
+                  return [];
+              }
+          }
+      },
+      "columns": [
+          { "data": "id" },
+          { "data": "username" },
+          { "data": "phone" },
+          { "data": "email" },
+          { "data": "created_at"},
+          {
+              "data": null,
+              "defaultContent": "<button>Edit</button>"
+          }
+      ]
+  });
+});
+
+
 
 
 // Use require.context to import all images from the folder
@@ -11001,6 +11048,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const logoutLink = document.getElementById('logoutLink');
+  console.log('Loan application link:', logoutLink);
+
+  if (logoutLink) {
+    console.log('Loan application link found, adding click event listener');
+
+    logoutLink.addEventListener('click', (e) => {
+      console.log('Loan application link clicked');
+      e.preventDefault(); // Prevent the default link behavior
+      console.log('Default action prevented, navigating to google.com');
+      window.location.href = 'index.html'; // Navigate to google.com
+    });
+  } else {
+    console.log('Loan application link not found');
+  }
+
+
+
+
+
   const loanApplicationLink = document.getElementById('loan-application-link');
   console.log('Loan application link:', loanApplicationLink);
 
@@ -11017,6 +11084,14 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Loan application link not found');
   }
 });
+
+
+
+
+
+
+
+
 
 jquery__WEBPACK_IMPORTED_MODULE_5___default()(document).ready(function() {
   jquery__WEBPACK_IMPORTED_MODULE_5___default()('#signupLink').click(function(e) {

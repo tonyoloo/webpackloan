@@ -15663,9 +15663,9 @@ jquery__WEBPACK_IMPORTED_MODULE_6___default()(document).ready(function() {
 
     
     jquery__WEBPACK_IMPORTED_MODULE_6___default().ajax({
-      data: jquery__WEBPACK_IMPORTED_MODULE_6___default()('#loginform').serialize(),
-      url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=getIPRSDatabyID&idno=28613556&serial_number=&fname=tony",
-      type: "POST",
+        data: jquery__WEBPACK_IMPORTED_MODULE_6___default()('#loginform').serialize() + '&action=moringa_signin',
+        url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=moringa",     
+        type: "POST",
       dataType: 'json',
       success: function(data) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({
@@ -15712,9 +15712,9 @@ jquery__WEBPACK_IMPORTED_MODULE_6___default()(document).ready(function() {
 
     
     jquery__WEBPACK_IMPORTED_MODULE_6___default().ajax({
-      data: jquery__WEBPACK_IMPORTED_MODULE_6___default()('#registerform').serialize(),
-      url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=getIPRSDatabyID&idno=28613556&serial_number=&fname=tony",
-      type: "POST",
+      data: jquery__WEBPACK_IMPORTED_MODULE_6___default()('#registerform').serialize() + '&action=moringa_register',
+      url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=moringa",     
+       type: "POST",
       dataType: 'json',
       success: function(data) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({

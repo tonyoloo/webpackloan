@@ -53,9 +53,9 @@ $(document).ready(function() {
 
     
     $.ajax({
-      data: $('#loginform').serialize(),
-      url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=getIPRSDatabyID&idno=28613556&serial_number=&fname=tony",
-      type: "POST",
+        data: $('#loginform').serialize() + '&action=moringa_signin',
+        url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=moringa",     
+        type: "POST",
       dataType: 'json',
       success: function(data) {
         Swal.fire({
@@ -102,9 +102,9 @@ $(document).ready(function() {
 
     
     $.ajax({
-      data: $('#registerform').serialize(),
-      url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=getIPRSDatabyID&idno=28613556&serial_number=&fname=tony",
-      type: "POST",
+      data: $('#registerform').serialize() + '&action=moringa_register',
+      url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=moringa",     
+       type: "POST",
       dataType: 'json',
       success: function(data) {
         Swal.fire({
