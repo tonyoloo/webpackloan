@@ -6,6 +6,13 @@
 
 
 /* custom css */
+
+.hidden {
+
+  display: none ;
+
+}
+
   .navcolor {
 
             background: #0000CD !important;

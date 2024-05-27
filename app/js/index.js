@@ -1,4 +1,7 @@
 // Import styles
+import jQuery from 'jquery';
+import 'bootstrap';
+
 import '../scss/styles.scss';
 import '../css/paper-dashboard.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -6,8 +9,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-import $ from 'jquery';
 import Swal from 'sweetalert2';
+const $ = jQuery.noConflict(true);
+
+
+
+$(document).ready(function() {
 
 // Use require.context to import all images from the folder
 const images = require.context('../image', false, /\.(png|jpe?g|svg)$/);
@@ -40,7 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-$(document).ready(function() {
+
+
+
+
   $('#signupLink').click(function(e) {
     e.preventDefault();
     $('#loginform').addClass('hidden');
@@ -57,19 +67,61 @@ $(document).ready(function() {
         url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=moringa",     
         type: "POST",
       dataType: 'json',
-      success: function(data) {
+      success: function(response) {
+
+        if (response.result === 'success') {
+          var userid = response.id; // Change from response.loan_types to response.data
+          var phonesession = response.phone;
+          sessionStorage.setItem('userid', userid);
+          sessionStorage.setItem('phonesession', phonesession);
+
+
         Swal.fire({
-            title: 'Login Success!',
-            text: 'Welcome to Moringa LOAN app',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Clear cache and reload
-                window.location.href = 'userin.html';
-            }
-        });
-        
+          title: 'Login Success!',
+          text: 'Welcome to Moringa LOAN app',
+          icon: 'success',
+          confirmButtonText: 'OK'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Clear cache and reload
+              window.location.href = 'userin.html';
+          }
+      });
+      
+       
+      } else {
+
+
+        Swal.fire({
+          title: 'Login fail!',
+          text: 'Welcome to Moringa LOAN app',
+          icon: 'error',
+          confirmButtonText: 'OK'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Clear cache and reload
+              window.location.href = 'index.html';
+          }
+      });
+      
+
+
+
+          console.error('Failed to fetch loan types: ' + response.message);
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         //API LOGIN
                                 //return
