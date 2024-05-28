@@ -60987,6 +60987,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const logoutLink = document.getElementById('logoutLink');
+console.log('Loan application link:', logoutLink);
+if (logoutLink) {
+  console.log('Loan application link found, adding click event listener');
+  logoutLink.addEventListener('click', e => {
+    console.log('Loan application link clicked');
+    e.preventDefault(); // Prevent the default link behavior
+    console.log('Default action prevented, navigating to google.com');
+    window.location.href = 'index.html'; // Navigate to google.com
+  });
+} else {
+  console.log('Loan application link not found');
+}
 const jq2 = jquery__WEBPACK_IMPORTED_MODULE_0___default().noConflict(true);
 
 //jq2 = jQuery.noConflict();
@@ -60995,6 +61008,37 @@ jq2(function ($) {
   // $(document).ready(function() {
   // Check if DataTable is already initialized
 
+  const applynav = document.getElementById('loan-application-link');
+  const statusnav = document.getElementById('loan-status-link');
+  const row = document.getElementById('13');
+  const row2 = document.getElementById('12');
+  const row3 = document.getElementById('10');
+  const row4 = document.getElementById('11');
+  if (applynav) {
+    applynav.addEventListener('click', e => {
+      console.log('Loan applynav link clicked');
+      e.preventDefault(); // Prevent the default link behavior
+      row.style.display = 'none'; // Make the row invisible
+      row2.style.display = 'none'; // Make the row invisible
+      row3.style.display = 'none'; // Make the row invisible
+    });
+  } else {
+    console.log('Loan application link or row not found');
+  }
+  if (statusnav) {
+    const row3 = document.getElementById('10');
+    row3.style.display = 'block';
+    statusnav.addEventListener('click', e => {
+      console.log('Loan statusnav link clicked');
+      e.preventDefault(); // Prevent the default link behavior
+      row.style.display = 'none'; // Make the row invisible
+      row2.style.display = 'none'; // Make the row invisible
+      row4.style.display = 'none'; // Make the row invisible
+      row3.style.display = 'block'; // Make the row ivisible
+    });
+  } else {
+    console.log('Loan application link or row not found');
+  }
   $('#signupLink').click(function (e) {
     e.preventDefault();
     $('#loginform').addClass('hidden');
@@ -61041,19 +61085,6 @@ jq2(function ($) {
         imgElement.alt = imageName;
         container.appendChild(imgElement);
       });
-    }
-    const logoutLink = document.getElementById('logoutLink');
-    console.log('Loan application link:', logoutLink);
-    if (logoutLink) {
-      console.log('Loan application link found, adding click event listener');
-      logoutLink.addEventListener('click', e => {
-        console.log('Loan application link clicked');
-        e.preventDefault(); // Prevent the default link behavior
-        console.log('Default action prevented, navigating to google.com');
-        window.location.href = 'index.html'; // Navigate to google.com
-      });
-    } else {
-      console.log('Loan application link not found');
     }
     const loanApplicationLink = document.getElementById('loan-application-link');
     console.log('Loan application link:', loanApplicationLink);
@@ -61125,6 +61156,7 @@ jq2(function ($) {
     var phone = $(this).data('phone');
     var loanserial = $(this).data('loanserial');
     console.log("Complete application attempt", user_id);
+    var storedUserid = sessionStorage.getItem('userid');
 
     // // Pass data to modal inputs
     // $('#userId').val(user_id);
@@ -61132,8 +61164,53 @@ jq2(function ($) {
     // $('#phone').val(phone);
     // $('#loanSerial').val(loanserial);
 
+    $.ajax({
+      data: $('#loanform').serialize() + '&action=moringa_approve' + '&storedUserid=' + storedUserid + '&loanserial=' + loanserial + '&amount=' + amount,
+      url: "https://mail.helb.co.ke:1930/mobiapi.php?rquest=moringa",
+      type: "POST",
+      dataType: 'json',
+      success: function (response) {
+        if (response.result === 'success') {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_22___default().fire({
+            title: 'loan approval Success!',
+            text: 'Welcome to Moringa LOAN app',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(result => {
+            if (result.isConfirmed) {
+              // Clear cache and reload
+              window.location.href = 'userin.html';
+            }
+          });
+        } else {
+          console.error('Failed to fetch loan types: ' + response.message);
+        }
+
+        //API LOGIN
+        //return
+      },
+      error: function (data) {
+        console.log("Error during approval", data);
+        if (data.responseJSON?.message) {
+          let errorText = data.responseJSON.message;
+          if (data.responseJSON.errors?.email?.[0]) {
+            errorText += " :" + data.responseJSON.errors.email[0];
+          }
+          sweetalert2__WEBPACK_IMPORTED_MODULE_22___default().fire({
+            title: 'approval Error!',
+            text: errorText,
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+      },
+      complete: function (data) {
+        console.log("Complete approval attempt", data);
+      }
+    });
+
     // Open the modal
-    '#approveModal'.modal('show');
+    // ('#approveModal').modal('show');
   });
   $.ajax({
     data: $('#loanform').serialize() + '&action=moringa_dashboard',
